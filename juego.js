@@ -1,4 +1,3 @@
-
 // Función para generar un número aleatorio entre min y max
 function generarNumeroAleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -26,46 +25,37 @@ function jugarAdivinanza() {
   let intentos = 0;
   const maxIntentos = 10;
 
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
   const hacerIntento = () => {
-    rl.question('Adivina el número secreto (entre 1 y 100): ', (intentoUsuarioStr) => {
-      const intentoUsuario = parseInt(intentoUsuarioStr);
+    const intentoUsuarioStr = prompt('Adivina el número secreto (entre 1 y 100): ');
+    const intentoUsuario = parseInt(intentoUsuarioStr);
 
-      if (!validarNumero(intentoUsuario)) {
-        console.log('Por favor, ingresa un número válido entre 1 y 100.');
+    if (!validarNumero(intentoUsuario)) {
+      console.log('Por favor, ingresa un número válido entre 1 y 100.');
+      hacerIntento();
+      return;
+    }
+
+    intentos++;
+
+    const resultado = verificarIntento(intentoUsuario, numeroSecreto);
+
+    if (resultado === 'acierto') {
+      console.log(`¡Felicitaciones! Adivinaste el número secreto ${numeroSecreto} en ${intentos} intentos.`);
+    } else if (resultado === 'mayor') {
+      console.log('El número secreto es mayor. ¡Sigue intentando!');
+      if (intentos < maxIntentos) {
         hacerIntento();
-        return;
-      }
-
-      intentos++;
-
-      const resultado = verificarIntento(intentoUsuario, numeroSecreto);
-
-      if (resultado === 'acierto') {
-        console.log(`¡Felicitaciones! Adivinaste el número secreto ${numeroSecreto} en ${intentos} intentos.`);
-        rl.close();
-      } else if (resultado === 'mayor') {
-        console.log('El número secreto es mayor. ¡Sigue intentando!');
-        if (intentos < maxIntentos) {
-          hacerIntento();
-        } else {
-          console.log(`Agotaste los ${maxIntentos} intentos. El número secreto era ${numeroSecreto}.`);
-          rl.close();
-        }
       } else {
-        console.log('El número secreto es menor. ¡Sigue intentando!');
-        if (intentos < maxIntentos) {
-          hacerIntento();
-        } else {
-          console.log(`Agotaste los ${maxIntentos} intentos. El número secreto era ${numeroSecreto}.`);
-          rl.close();
-        }
+        console.log(`Agotaste los ${maxIntentos} intentos. El número secreto era ${numeroSecreto}.`);
       }
-    });
+    } else {
+      console.log('El número secreto es menor. ¡Sigue intentando!');
+      if (intentos < maxIntentos) {
+        hacerIntento();
+      } else {
+        console.log(`Agotaste los ${maxIntentos} intentos. El número secreto era ${numeroSecreto}.`);
+      }
+    }
   };
 
   hacerIntento();
@@ -73,6 +63,18 @@ function jugarAdivinanza() {
 
 // Llamada a la función para iniciar el juego
 jugarAdivinanza();
+
+// Objeto que representa a una persona
+const persona = {
+  nombre: "Juan",
+  edad: 30,
+  ocupacion: "Desarrollador"
+};
+
+console.log("Información de la persona:");
+console.log("Nombre:", persona.nombre);
+console.log("Edad:", persona.edad);
+console.log("Ocupación:", persona.ocupacion);
 
 // Declaración de variables y objetos necesarios
 const numero1 = 10;

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-
+<html lang="es">
 <head>
-    <title>Juego de adivinanzas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinanza del Número Secreto</title>
 </head>
-
 <body>
-    <!-- Enlazar el archivo JavaScript externo -->
-    <script src="/juego.js"></script>
-    <header>
-        <title>Juego de adivinanzas</title>
-    </header>
-</body>
+    <h1>Adivinanza del Número Secreto</h1>
+    <p>Intentos: <span id="intentos">0</span></p>
+    <p>Resultado: <span id="resultado"></span></p>
+    <input type="number" id="intentoUsuario" placeholder="Ingresa tu intento">
+    <button id="realizarIntento">Realizar Intento</button>
 
+    <script src="juego.js"></script>
+</body>
 </html>
